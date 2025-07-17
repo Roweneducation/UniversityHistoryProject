@@ -12,6 +12,29 @@ st.set_page_config(
 # --- CUSTOM BRANDING CSS ---
 st.markdown("""
 <style>
+/* Make sidebar wider */
+section[data-testid="stSidebar"] {
+    min-width: 380px !important;
+    max-width: 480px !important;
+    width: 380px !important;
+}
+@media (min-width: 1400px) {
+    section[data-testid="stSidebar"] {
+        min-width: 440px !important;
+        max-width: 520px !important;
+        width: 440px !important;
+    }
+}
+/* Optional: prevent content overflow inside sidebar */
+section[data-testid="stSidebar"] > div:first-child {
+    padding-right: 18px !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+<style>
 /* Add padding to the right of the sidebar to prevent overlap */
 section[data-testid="stSidebar"] > div:first-child {
     padding-right: 32px !important;
