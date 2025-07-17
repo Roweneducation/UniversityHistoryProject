@@ -31,7 +31,15 @@ else:
     # ... your other filters
 
 # --- CUSTOM BRANDING CSS ---
-
+st.markdown("""
+    <style>
+    @media (max-width: 800px) {
+        section[data-testid="stSidebar"] {
+            display: none;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
 st.markdown("""
 <style>
 /* Make sidebar wider */
