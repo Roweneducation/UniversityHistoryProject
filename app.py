@@ -9,16 +9,28 @@ st.set_page_config(
     page_icon="Slide10-removebg-preview.png",
 )
 
+
+
+# Function to check if on mobile (very simple version)
+def is_mobile():
+    return st.session_state.get("is_mobile", False)
+
+# Fallback if you can't detect device, allow user to choose:
+is_mobile_ui = st.checkbox("Mobile mode (hide sidebar and show filters here)", value=False)
+st.session_state["is_mobile"] = is_mobile_ui
+
+if is_mobile():
+    # Show filters at the top of the main page
+    year = st.slider("Year", 1000, 2025, 1978)
+    country = st.selectbox("Country", ["All", "Germany", "France"])
+    # ... your other filters
+else:
+    # Show filters in the sidebar
+    year = st.sidebar.slider("Year", 1000, 2025, 1978)
+    country = st.sidebar.selectbox("Country", ["All", "Germany", "France"])
+    # ... your other filters
+
 # --- CUSTOM BRANDING CSS ---
-st.markdown("""
-    <style>
-    @media (max-width: 800px) {
-        section[data-testid="stSidebar"] {
-            display: none;
-        }
-    }
-    </style>
-    """, unsafe_allow_html=True)
 
 st.markdown("""
 <style>
