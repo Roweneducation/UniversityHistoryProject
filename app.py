@@ -9,28 +9,7 @@ st.set_page_config(
     page_icon="Slide10-removebg-preview.png",
 )
 
-
-
-# Function to check if on mobile (very simple version)
-def is_mobile():
-    return st.session_state.get("is_mobile", False)
-
-# Fallback if you can't detect device, allow user to choose:
-is_mobile_ui = st.checkbox("Mobile mode (hide sidebar and show filters here)", value=False)
-st.session_state["is_mobile"] = is_mobile_ui
-
-if is_mobile():
-    # Show filters at the top of the main page
-    year = st.slider("Year", 1000, 2025, 1978)
-    country = st.selectbox("Country", ["All", "Germany", "France"])
-    # ... your other filters
-else:
-    # Show filters in the sidebar
-    year = st.sidebar.slider("Year", 1000, 2025, 1978)
-    country = st.sidebar.selectbox("Country", ["All", "Germany", "France"])
-    # ... your other filters
-
-# --- CUSTOM BRANDING CSS ---
+# --- CUSTOM BRANDING CSS (optional, keep as you wish) ---
 st.markdown("""
     <style>
     @media (max-width: 800px) {
@@ -55,36 +34,26 @@ section[data-testid="stSidebar"] {
         width: 440px !important;
     }
 }
-/* Optional: prevent content overflow inside sidebar */
 section[data-testid="stSidebar"] > div:first-child {
     padding-right: 18px !important;
 }
 </style>
 """, unsafe_allow_html=True)
-
-
 st.markdown("""
 <style>
-/* Add padding to the right of the sidebar to prevent overlap */
 section[data-testid="stSidebar"] > div:first-child {
     padding-right: 32px !important;
 }
-
-/* (Optional) Make sure slider labels don't get clipped */
 div[data-baseweb="slider"] {
     margin-right: 16px !important;
 }
 </style>
 """, unsafe_allow_html=True)
-
 st.markdown("""
 <style>
-/* Sidebar background: off-white */
 section[data-testid="stSidebar"] {
     background: #f8f9fa !important;
 }
-
-/* Sidebar titles and labels: navy */
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3,
@@ -94,8 +63,6 @@ section[data-testid="stSidebar"] .st-bb {
     color: #15325b !important;
     font-weight: bold;
 }
-
-/* Multiselect selected pills - override Streamlit's default accent */
 .css-1n76uvr, .css-1fv8s86, .css-1r7ky0e, .css-x78sv8, .css-1e3tf61 {
     background-color: #eab32a !important;
     border: 2px solid #15325b !important;
@@ -103,21 +70,15 @@ section[data-testid="stSidebar"] .st-bb {
     font-weight: 700 !important;
     border-radius: 8px !important;
 }
-
-/* Multiselect pill "x" remove button */
 .css-1n76uvr .css-12a93b, .css-1fv8s86 .css-12a93b, .css-1r7ky0e .css-12a93b, .css-x78sv8 .css-12a93b, .css-1e3tf61 .css-12a93b {
     color: #15325b !important;
 }
-
-/* Multiselect dropdown caret and border */
 div[data-baseweb="select"] .css-1wy0on6 {
     color: #eab32a !important;
 }
 div[data-baseweb="select"] .css-1pahdxg-control {
     border-color: #eab32a !important;
 }
-
-/* Slider: gold track and thumb */
 div[data-baseweb="slider"] .css-14g5y82 .css-1uixxvy,
 div[data-baseweb="slider"] .css-1n4twyz,
 div[data-baseweb="slider"] .css-1eoe787,
@@ -133,8 +94,6 @@ span[data-testid="stSliderValue"] {
     color: #eab32a !important;
     font-weight: bold;
 }
-
-/* Expander border and label */
 .st-expander {
     border: 2px solid #eab32a !important;
     border-radius: 8px !important;
@@ -144,8 +103,6 @@ span[data-testid="stSliderValue"] {
     color: #15325b !important;
     font-weight: bold;
 }
-
-/* Century legend: gold border, navy label */
 .century-legend-box {
     border: 2px solid #eab32a !important;
 }
@@ -156,9 +113,6 @@ span[data-testid="stSliderValue"] {
 }
 </style>
 """, unsafe_allow_html=True)
-
-
-
 
 # --- Load data ---
 @st.cache_data
@@ -177,30 +131,44 @@ def load_data():
 
 df = load_data()
 
-# --- LOGO ---
-st.sidebar.image("Slide9-removebg-preview.png", use_container_width=True)
-
-# --- SIDEBAR FILTERS ---
-st.sidebar.title("Filters")
-
-# Year range filter
+# Get year and country range for both modes
 year_min = int(df["year"].min())
 year_max = int(df["year"].max())
-year_range = st.sidebar.slider(
-    "Founding Year Range",
-    min_value=year_min,
-    max_value=year_max,
-    value=(year_min, year_max),
-    step=1
-)
-
-# Country filter (multi-select)
 countries = sorted(df["country"].dropna().unique())
-selected_countries = st.sidebar.multiselect(
-    "Country",
-    countries,
-    default=countries  # Default to all selected
-)
+
+# ---- Mobile/desktop toggle ----
+is_mobile = st.checkbox("Mobile mode (hide sidebar and show filters here)", value=False)
+
+if is_mobile:
+    st.image("Slide9-removebg-preview.png", use_container_width=True)
+    st.title("Filters")
+    year_range = st.slider(
+        "Founding Year Range",
+        min_value=year_min,
+        max_value=year_max,
+        value=(year_min, year_max),
+        step=1
+    )
+    selected_countries = st.multiselect(
+        "Country",
+        countries,
+        default=countries
+    )
+else:
+    st.sidebar.image("Slide9-removebg-preview.png", use_container_width=True)
+    st.sidebar.title("Filters")
+    year_range = st.sidebar.slider(
+        "Founding Year Range",
+        min_value=year_min,
+        max_value=year_max,
+        value=(year_min, year_max),
+        step=1
+    )
+    selected_countries = st.sidebar.multiselect(
+        "Country",
+        countries,
+        default=countries
+    )
 
 # Filter DataFrame
 df_filtered = df[
