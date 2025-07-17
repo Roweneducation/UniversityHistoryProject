@@ -228,6 +228,12 @@ If you notice errors or missing universities, please let us know!
 - Make the global history of higher education visually explorable.
 - Encourage transparency by showing sources and limitations.
 
+**Disclosure:** 
+Disclaimer:
+The data presented here is by no means complete or fully accurate. 
+Not all universities are included, and some information may be missing or imprecise. 
+Please do not take these listings as exhaustive or fully authoritative—they are intended for exploration and general reference only.
+
 _Data sources include Wikipedia, university official pages, and aggregated directories. The data are for educational and visualization purposes only._
 """)
 
