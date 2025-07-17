@@ -6,7 +6,7 @@ st.set_page_config(
     page_title="University Foundings Over Time",
     layout="wide",
     initial_sidebar_state="expanded",
-    page_icon="🎓",
+    page_icon="Slide10-removebg-preview.png",
 )
 
 # --- CUSTOM BRANDING CSS ---
