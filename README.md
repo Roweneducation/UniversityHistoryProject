@@ -2,7 +2,7 @@
 
 **Visualize the founding of universities around the world over time.**
 
-This interactive app lets users explore the historical emergence of universities across countries and centuries. Using an animated timeline and map, you can see when and where universities were founded, filter by country, and analyze trends in higher education history.
+This interactive app lets users explore the historical emergence of universities across countries and centuries. Using an animated timeline and map, you can see when and where universities were founded, filter by country, and analyze trends in higher education history. (If there were multiple entries for the same university over different years, we have kept only the most recent entry. This ensures that the geographical coordinates correspond more closely to the university’s current location, despite any relocations throughout its history.)
 
 ---
 
@@ -43,7 +43,7 @@ streamlit run app.py
 
 ---
 
-## 💡 Further Reading
+## 💡 Further Reading and Sources
 
 * [List of universities in Australia (Wikipedia)](https://en.wikipedia.org/wiki/List_of_universities_in_Australia)
 * [Wikidata: University (Q3918)](https://www.wikidata.org/wiki/Q3918)
