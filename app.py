@@ -140,7 +140,7 @@ countries = sorted(df["country"].dropna().unique())
 is_mobile = st.checkbox("Mobile mode (hide sidebar and show filters here)", value=False)
 
 if is_mobile:
-    st.sidebar.image("Slide9-removebg-preview.png", use_container_width=True)
+    st.image("Slide9-removebg-preview.png", use_container_width=True)
     st.title("Filters")
     year_range = st.slider(
         "Founding Year Range",
@@ -155,7 +155,7 @@ if is_mobile:
         default=countries
     )
 else:
-    st.image("Slide9-removebg-preview.png", use_container_width=True)
+    st.sidebar.image("Slide9-removebg-preview.png", use_container_width=True)
     st.sidebar.title("Filters")
     year_range = st.sidebar.slider(
         "Founding Year Range",
