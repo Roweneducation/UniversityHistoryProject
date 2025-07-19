@@ -1,4 +1,4 @@
-# 📦 Universities History Project
+# 🎓 Universities History Project
 
 **Visualize the founding of universities around the world over time.**
 
@@ -8,7 +8,7 @@ This interactive app lets users explore the historical emergence of universities
 
 ## 🚀 Demo App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://app-starter-kit.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://universityhistory.streamlit.app/)
 
 Try out the live demo and explore the evolution of higher education!
 
@@ -61,4 +61,3 @@ Contributions are welcome! If you spot missing universities or want to improve t
 
 MIT License.
 See `LICENSE` for details.
-
