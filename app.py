@@ -148,6 +148,7 @@ if is_mobile:
     """,
     unsafe_allow_html=True,
 )
+
     st.title("Filters")
     year_range = st.slider(
         "Founding Year Range",
@@ -170,6 +171,7 @@ else:
     """,
     unsafe_allow_html=True,
 )
+
     st.sidebar.title("Filters")
     year_range = st.sidebar.slider(
         "Founding Year Range",
