@@ -140,7 +140,14 @@ countries = sorted(df["country"].dropna().unique())
 is_mobile = st.checkbox("Mobile mode (hide sidebar and show filters here)", value=False)
 
 if is_mobile:
-    st.image("Slide9-removebg-preview.png", use_container_width=True)
+    st.sidebar.markdown(
+    """
+    <a href="https://roweneducation.com" target="_blank">
+        <img src="Slide9-removebg-preview.png" style="width:100%;max-width:280px;" alt="Rowen Education logo">
+    </a>
+    """,
+    unsafe_allow_html=True,
+)
     st.title("Filters")
     year_range = st.slider(
         "Founding Year Range",
@@ -155,7 +162,14 @@ if is_mobile:
         default=countries
     )
 else:
-    st.sidebar.image("Slide9-removebg-preview.png", use_container_width=True)
+    st.sidebar.markdown(
+    """
+    <a href="https://roweneducation.com" target="_blank">
+        <img src="Slide9-removebg-preview.png" style="width:100%;max-width:280px;" alt="Rowen Education logo">
+    </a>
+    """,
+    unsafe_allow_html=True,
+)
     st.sidebar.title("Filters")
     year_range = st.sidebar.slider(
         "Founding Year Range",
